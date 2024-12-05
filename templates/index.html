@@ -3,76 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Breed Classifier</title>
+    <title>Dog Breed ID</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Dog Breed Classifier</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <label for="file">Upload an image of a dog:</label>
-        <input type="file" id="file" name="file" accept="image/*" required>
-        <button type="submit">Predict</button>
-    </form>
-    <div id="result"></div>
+    <div class="intro">
+        <div class="overlay">
+            <div class="content-container">
+                <h1>Welcome to Dog Breed ID</h1>
+                <p>
+                    Looking to uncover your furry friend's breed? <br>
+                    Upload a photo, and let us do the rest!
+                </p>
+
+                <form id="upload-form" method="POST" enctype="multipart/form-data" action="/predict">
+                    <input id="file-input" type="file" name="file" style="display:none;" onchange="showPredictButton();">
+
+                    <div class="button-group">
+                        <button class="upload-btn" type="button" onclick="document.getElementById('file-input').click();">Upload a Photo</button>
+                        <button id="predict-btn" class="predict-btn" type="submit" style="display:none;">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
-        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const fileInput = document.getElementById('file');
-            const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-
-            const response = await fetch('/predict', {
-                method: 'POST',
-                body: formData,
-            });
-
-            const result = await response.json();
-            const resultDiv = document.getElementById('result');
-
-            if (response.ok) {
-                // Start with breed and confidence
-                let html = `
-                    <h2>Prediction Result</h2>
-                    <p><strong>Breed:</strong> ${result.breed}</p>
-                    <p><strong>Confidence:</strong> ${(result.confidence * 100).toFixed(2)}%</p>
-                `;
-
-                // Add breed details if available
-                if (result.breed_details) {
-                    html += `
-                        <h3>About ${result.breed}</h3>
-                        <table border="1" cellspacing="0" cellpadding="5">
-                            ${Object.entries(result.breed_details).map(([key, value]) => `
-                                <tr>
-                                    <td><strong>${key.replace(/_/g, ' ').toUpperCase()}:</strong></td>
-                                    <td>${value}</td>
-                                </tr>
-                            `).join('')}
-                        </table>
-                    `;
-                } else {
-                    html += '<p>No additional information found for this breed.</p>';
-                }
-
-                resultDiv.innerHTML = html;
-            } else {
-                resultDiv.innerHTML = `<p>Error: ${result.error}</p>`;
-            }
-        });
-            // if (response.ok) {
-            //     resultDiv.innerHTML = `
-            //         <h2>Prediction Result</h2>
-            //         <p><strong>Breed:</strong> ${result.breed}</p>
-            //         <p><strong>Confidence:</strong> ${(result.confidence * 100).toFixed(2)}%</p>
-            //         ${result.breed_details ? `
-            //             <h3>About ${result.breed}</h3>
-            //             <p>${JSON.stringify(result.breed_details)}</p>
-            //         ` : '<p>No additional information found.</p>'}
-            //     `;
-            // } else {
-            //     resultDiv.innerHTML = `<p>Error: ${result.error}</p>`;
-            // }
-        
+        function showPredictButton() {
+            document.getElementById('predict-btn').style.display = 'inline-block';
+        }
     </script>
 </body>
 </html>

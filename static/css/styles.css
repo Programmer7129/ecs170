@@ -1,0 +1,164 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+.intro {
+    background-image: url("../images/background_image.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    max-width: 700px;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.content-container h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.content-container p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.upload-btn, .predict-btn {
+    background-color: #FF5733;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.upload-btn:hover, .predict-btn:hover {
+    background-color: #ff7043;
+}
+
+.predict-btn {
+    display: none; 
+}
+
+.result-page {
+    background: linear-gradient(135deg, #FFE29F, #FFA99F);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.result-container {
+    max-width: 700px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    overflow: hidden;
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.image-and-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.uploaded-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.prediction-info {
+    text-align: left;
+}
+
+.prediction-info h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.prediction-info p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 5px 0 0;
+}
+
+.breed-details {
+    width: 100%;
+    text-align: center;
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 1rem;
+}
+
+table th, table td {
+    padding: 15px 25px;
+    border: 1px solid #ddd;
+    word-break: break-word;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}

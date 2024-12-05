@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="result-page">
+        <div class="result-container">
+            <h1>Prediction Result</h1>
+            <div class="result-content">
+                <div class="image-and-info">
+                    <div class="uploaded-image">
+                        <img src="{{ url_for('static', filename='images/' + image_url) }}" alt="Uploaded Image">
+                    </div>
+                    <div class="prediction-info">
+                        <h2>Breed: {{ breed }}</h2>
+                        <p>Confidence: {{ confidence }}%</p>
+                    </div>
+                </div>
+                <div class="breed-details">
+                    <h3>Details:</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Attribute</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for key, value in breed_details.items() %}
+                                <tr>
+                                    <td>{{ key }}</td>
+                                    <td>{{ value }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
