@@ -5,37 +5,37 @@ from tensorflow.keras.models import load_model
 import pandas as pd
 from preprocess import preprocess_image
 
-# Initialize Flask app
+#initialize flask app
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Load the trained model
+#load model
 model = load_model('model/dog_breed_model.h5')
 
-# Load the breed info dataset
+# load dataset
 breed_info = pd.read_csv('dogs-ranking-dataset.csv')
 
-# Automatically generate class indices by parsing folder names
 image_folder = 'dataset/dataset/Images'
 class_indices = {
     folder.split('-')[-1]: idx
     for idx, folder in enumerate(sorted(os.listdir(image_folder)))
 }
 reverse_class_indices = {v: k for k, v in class_indices.items()}
-
+# preprocessing
 def preprocess_breed_name(class_name):
     class_name = class_name.replace('_', ' ')
     if class_name.endswith(' dog'):
         class_name = class_name[:-4]
     return class_name.title()
-
+#home endpoint
 @app.route('/')
 def index():
     return render_template('index.html')
-
+#prediction endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
+    #check if file is uploaded
     if 'file' not in request.files:
         return render_template('index.html', error="No file uploaded")
 
