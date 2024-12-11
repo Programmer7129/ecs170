@@ -70,7 +70,7 @@
 #     app.run(debug=True)
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-from flask import Flask, request, jsonify, render_template, session
+from flask import Flask, request, jsonify, render_template
 import numpy as np
 from tensorflow.keras.models import load_model
 import pandas as pd
