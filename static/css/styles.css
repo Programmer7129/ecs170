@@ -29,32 +29,32 @@ body, html {
     align-items: center;
 }
 
-.content-container {
+.contents {
     max-width: 700px;
     text-align: center;
     color: white;
     padding: 20px;
 }
 
-.content-container h1 {
+.contents h1 {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-.content-container p {
+.contents p {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 30px;
 }
 
-.button-group {
+.button {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.upload-btn, .predict-btn {
+.upload-button, .predict-button {
     background-color: #FF5733;
     color: white;
     font-size: 1rem;
@@ -65,11 +65,11 @@ body, html {
     transition: 0.3s ease-in-out;
 }
 
-.upload-btn:hover, .predict-btn:hover {
+.upload-button:hover, .predict-button:hover {
     background-color: #ff7043;
 }
 
-.predict-btn {
+.predict-button {
     display: none; 
 }
 
@@ -84,7 +84,7 @@ body, html {
     box-sizing: border-box;
 }
 
-.result-container {
+.results {
     max-width: 700px;
     width: 100%;
     background: white;
